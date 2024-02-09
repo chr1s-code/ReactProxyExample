@@ -21,7 +21,13 @@ app.get('/weather', (req: Request, res: Response) => {
             res.json(response);
         })
         .catch(function (error) {
-            console.error(error);
+            if(error.response.status == 400){
+                res.status(400)
+                res.send("Unknown city name")
+            }
+            else {
+                console.log(error)
+            }
         });
 });
 
