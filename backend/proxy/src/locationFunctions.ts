@@ -7,7 +7,7 @@ dotenv.config()
 export async function getLocationByName(locationName: string): Promise<Location> {
     return axios({
             method: 'GET',
-            url: 'http://api.openweathermap.org/geo/1.0/direct?q=' + locationName + '&limit={limit}&appid=' + process.env.OPENWEATHERMAP_API_KEY,
+            url: 'http://api.openweathermap.org/geo/1.0/direct?q=' + locationName + '&limit=1&appid=' + process.env.OPENWEATHERMAP_API_KEY,
             responseType: 'json'
         })
         .then(res => {

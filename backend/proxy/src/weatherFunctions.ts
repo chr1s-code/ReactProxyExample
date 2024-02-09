@@ -1,6 +1,9 @@
 import { WeatherData } from "./interfaces/WeatherData";
 import { getLocationByName } from "./locationFunctions";
 import axios from "axios";
+import dotenv from "dotenv"
+
+dotenv.config()
 
 const DEFAULT_LOCATION = "Bonn"
 
@@ -19,7 +22,7 @@ export async function fetchWeather(locationName: string): Promise<WeatherData> {
 
     return axios({
         method: 'GET',
-        url: `https://api.openweathermap.org/data/3.0/onecall?lat=${location.lat}&lon=${location.lon}&exclude=minutely,hourly,alerts&units=metric&lang=en&appid=${process.env.WEATHER_API_KEY}`,
+        url: `https://api.openweathermap.org/data/3.0/onecall?lat=${location.lat}&lon=${location.lon}&exclude=minutely,hourly,alerts&units=metric&lang=en&appid=${process.env.OPENWEATHERMAP_API_KEY}`,
         responseType: 'json'
     })
     .then(res => {

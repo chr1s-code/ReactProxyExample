@@ -24,3 +24,7 @@ app.get('/weather', (req: Request, res: Response) => {
             console.error(error);
         });
 });
+
+app.get('/', (req: Request, res: Response) => {
+    res.send("Test")
+})
