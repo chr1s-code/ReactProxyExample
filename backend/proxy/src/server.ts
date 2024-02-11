@@ -6,6 +6,8 @@ import { fetchWeather } from './weatherFunctions';
 // defining the server port
 const port: number = 5000;
 
+const DATE_TIME_FORMAT = 'YYYY-MM-DDTHH:mm';
+
 // initializing installed dependencies
 const app = express();
 dotenv.config();
@@ -16,8 +18,11 @@ app.listen(port, () => console.log(`Server is running on ${port}`));
 
 // API request
 app.get('/weather', (req: Request, res: Response) => {
+    console.log(`[${new Date().toLocaleString('de-DE')}][${req.method}]: ${req.url} received`)
     fetchWeather(req.query.locationName as string)
         .then(function (response) {
+            console.log(`[${new Date().toLocaleString('de-DE')}]: Responding with HTTP 200`);
+            console.log(response);
             res.json(response);
         })
         .catch(function (error) {
